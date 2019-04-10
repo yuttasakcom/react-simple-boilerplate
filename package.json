@@ -6,7 +6,7 @@
   "author": "Yuttasak Pannawat <yuttasakcom@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --hot",
+    "dev": "webpack-dev-server --config webpack.config.dev.js --port 8080",
     "build": "webpack --mode production"
   },
   "dependencies": {
@@ -21,7 +21,9 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "copy-webpack-plugin": "^5.0.2",
+    "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
