@@ -1,8 +1,11 @@
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const resolve = dir => path.resolve(__dirname, dir);
+
+process.env.NODE_ENV = "development";
 
 const config = {
   devtool: "cheap-module-source-map",
@@ -34,6 +37,9 @@ const config = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+    }),
     new HtmlWebpackPlugin({
       template: resolve("public/index.html"),
     }),
