@@ -16,3 +16,5 @@ build:
     - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD registry.example.com
     - docker build -t $IMAGE_NAME .
     - docker push $IMAGE_NAME
+  tags:
+    - build
