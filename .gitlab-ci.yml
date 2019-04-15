@@ -1,0 +1,16 @@
+variables:
+  IMAGE_NAME: registry.example.com/reactjs/react-simple-boilerplate:$CI_COMMIT_REF_NAME
+
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  script:
+    - echo "Test"
+
+build:
+  stage: build
+  script:
+    - echo "Build"
