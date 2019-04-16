@@ -3,10 +3,15 @@ image: docker:stable
 variables:
   REGISTRY_PATH: "registry.example.com/root/react-simple-boilerplate"
 
+stages:
+  - test
+
 development_test:
-  stage: dev
+  stage: test
+  vairables:
+    IMAGE_NAME: $REGISTRY_PATH:dev-$CI_COMMIT_SHORT_SHA
   script:
-    - echo $REGISTRY_PATH:$CI_JOB_STAGE-$CI_COMMIT_SHORT_SHA
+    - echo $IMAGE_NAME
   tags:
     - docker
 # development_build:
