@@ -21,8 +21,6 @@ testing:
 develop:
   stage: build
   image: docker:latest
-  services:
-    - docker:dind
   only:
     - develop
   script:
