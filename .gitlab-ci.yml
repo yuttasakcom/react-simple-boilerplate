@@ -20,12 +20,11 @@ testing:
 
 develop:
   stage: build
-  image: docker:latest
   only:
     - develop
   script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker login -u password -p password registry.example.com
+    - docker build -t registry.example.com/root/react-simple-boilerplate .
+    - docker push registry.example.com/root/react-simple-boilerplate
   tags:
     - docker
