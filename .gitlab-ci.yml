@@ -1,17 +1,25 @@
-image: docker:latest
+image: docker:stable
 
 variables:
-  IMAGE_NAME: registry.example.com/reactjs/react-simple-boilerplate:$CI_COMMIT_REF_NAME
+  REGISTRY_PATH: "registry.example.com/root/react-simple-boilerplate"
 
 stages:
-  - build
+  - test
+  # - build
 
-build:
-  stage: build
+development_test:
   script:
-    - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD registry.example.com
-    - docker build -t $IMAGE_NAME .
-    - docker push $IMAGE_NAME
-  tags:
-    - docker
-    - build
+    - echo $REGISTRY_PATH:$CI_JOB_STAGE-$CI_COMMIT_SHORT_SHA"
+# development_build:
+#   stage: build
+#   valiables:
+#     - IMAGE_NAME: "$REGISTRY_PATH:$CI_JOB_STAGE-$CI_COMMIT_SHORT_SHA"
+#   only:
+#     refs:
+#       - development
+#   script:
+#     - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD registry.example.com
+#     - docker build -t $IMAGE_NAME .
+#     - docker push $IMAGE_NAME
+#   tags:
+#     - docker
