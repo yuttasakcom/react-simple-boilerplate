@@ -2,6 +2,7 @@ image: node:latest
 
 stages:
   - test
+  - build
 
 cache:
   paths:
