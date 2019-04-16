@@ -1,13 +1,15 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
 stages:
   - test
   - build
 
 testing:
   stage: test
-  image: node:latest
-  cache:
-    paths:
-      - node_modules/
   script:
     - npm install
     - npm run test:ci
@@ -23,8 +25,9 @@ develop:
   only:
     - develop
   script:
-    - docker login -u root -p password registry.example.com
-    - docker build -t registry.example.com/root/react-simple-boilerplate .
-    - docker push registry.example.com/root/react-simple-boilerplate
+    - npm run build
+    - docker login -u $CI_REGISTRY_PASSWORD -p $CI_REGISTRY_USER $CI_REGISTRY
+    - docker build --no-cache -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
   tags:
     - docker
