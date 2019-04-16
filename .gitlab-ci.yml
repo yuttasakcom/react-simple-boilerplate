@@ -1,14 +1,12 @@
-image: node:latest
-
-cache:
-  paths:
-    - node_modules/
-
 stages:
   - test
   - build
 
 testing:
+  image: node:latest
+  cache:
+    paths:
+      - node_modules/
   stage: test
   script:
     - npm install
@@ -26,7 +24,6 @@ develop:
   only:
     - develop
   script:
-    - npm run build
     - docker login -u $CI_REGISTRY_PASSWORD -p $CI_REGISTRY_USER $CI_REGISTRY
     - docker build --no-cache -t $CI_REGISTRY_IMAGE .
     - docker push $CI_REGISTRY_IMAGE
