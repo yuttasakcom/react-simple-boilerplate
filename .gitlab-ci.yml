@@ -23,7 +23,7 @@ develop:
   only:
     - develop
   script:
-    - docker login -u password -p password registry.example.com
+    - docker login -u root -p password registry.example.com
     - docker build -t registry.example.com/root/react-simple-boilerplate .
     - docker push registry.example.com/root/react-simple-boilerplate
   tags:
