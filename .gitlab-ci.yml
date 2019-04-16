@@ -13,7 +13,7 @@ development_test:
   script:
     - npm install
     - npm run test:ci
-  only:
+  except:
     - development
     - master
   tags:
@@ -23,7 +23,7 @@ development_build:
   stage: build
   variables:
     IMAGE_NAME: $CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA
-  only:
+  except:
     - development
   script:
     - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD $CI_REGISTRY
