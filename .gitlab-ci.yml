@@ -8,6 +8,7 @@ stages:
   # - build
 
 development_test:
+  stage: dev
   script:
     - echo $REGISTRY_PATH:$CI_JOB_STAGE-$CI_COMMIT_SHORT_SHA
   tags:
