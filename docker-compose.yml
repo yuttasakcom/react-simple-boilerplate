@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  web:
+    image: registry.example.com/reactjs/react-simple-boilerplate
+    build: .
+    ports:
+      - "8080:80"
+    restart: always

@@ -1,0 +1,33 @@
+image: node:latest
+
+stages:
+  - test
+  - build
+
+cache:
+  paths:
+    - node_modules/
+
+development_test:
+  stage: test
+  script:
+    - npm install
+    - npm run test:ci
+  only:
+    - development
+    - master
+  tags:
+    - docker
+
+development_build:
+  stage: build
+  variables:
+    IMAGE_NAME: $CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA
+  only:
+    - development
+  script:
+    - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --no-cache -t $IMAGE_NAME .
+    - docker push $IMAGE_NAME
+  tags:
+    - docker

@@ -9,7 +9,8 @@
     "dev": "webpack-dev-server --config webpack.config.dev.js --port 8080",
     "test": "jest --watch",
     "build": "webpack --mode production",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "test:ci": "jest"
   },
   "jest": {
     "moduleNameMapper": {
