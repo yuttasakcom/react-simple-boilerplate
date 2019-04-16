@@ -27,7 +27,7 @@ development_build:
     - development
   script:
     - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE_NAME .
+    - docker build --no-cache -t $IMAGE_NAME .
     - docker push $IMAGE_NAME
   tags:
     - docker
