@@ -2,7 +2,7 @@ stages:
   - test
   - build
 
-development_test:
+testing:
   stage: test
   image: node:latest
   cache:
@@ -11,22 +11,21 @@ development_test:
   script:
     - npm install
     - npm run test:ci
+    - npm run coverage
   only:
     - develop
     - master
   tags:
     - docker
 
-development_build:
+develop:
   stage: build
   image: docker:stable
-  variables:
-    IMAGE_NAME: $CI_REGISTRY_IMAGE:dev-$CI_COMMIT_SHORT_SHA
   only:
     - develop
   script:
     - docker login -u $RUNNER_REGISTRY_USER -p $RUNNER_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build --no-cache -t $IMAGE_NAME .
-    - docker push $IMAGE_NAME
+    - docker build --no-cache -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
   tags:
     - docker
