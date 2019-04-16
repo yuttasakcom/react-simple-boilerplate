@@ -3,10 +3,6 @@ image: docker:stable
 variables:
   REGISTRY_PATH: "registry.example.com/root/react-simple-boilerplate"
 
-stages:
-  - test
-  # - build
-
 development_test:
   stage: dev
   script:
