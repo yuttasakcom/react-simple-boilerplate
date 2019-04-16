@@ -9,7 +9,7 @@ stages:
 
 development_test:
   script:
-    - echo $REGISTRY_PATH:$CI_JOB_STAGE-$CI_COMMIT_SHORT_SHA"
+    - echo $REGISTRY_PATH:$CI_JOB_STAGE-$CI_COMMIT_SHORT_SHA
   tags:
     - docker
 # development_build:
