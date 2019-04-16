@@ -1,5 +1,4 @@
 image: node:latest
-image: docker:latest
 
 cache:
   paths:
@@ -22,6 +21,7 @@ testing:
     - docker
 
 develop:
+  image: docker:latest
   stage: build
   only:
     - develop
